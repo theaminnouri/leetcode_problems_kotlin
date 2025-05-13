@@ -24,4 +24,23 @@ object BoatsToSavePeople881 {
         return numberOfBoats
     }
 
+    fun numRescueBoats2(people: IntArray, limit: Int): Int {
+        var numberOfBoats = 0
+        val sortedWeight = people.sorted()
+        var i = 0
+        var j = sortedWeight.lastIndex
+        while (i <= j) {
+            if (sortedWeight[i] + sortedWeight[j] <= limit) {
+                i++
+                j--
+            } else {
+                j--
+            }
+            numberOfBoats++
+            if (i !in sortedWeight.indices)
+                break
+        }
+        return numberOfBoats
+    }
+
 }
