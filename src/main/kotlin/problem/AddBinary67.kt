@@ -28,4 +28,31 @@ object AddBinary67 {
         return result
     }
 
+    fun addBinary2(a: String, b: String): String {
+        var newA = a
+        var newB = b
+        val lengthOfB = b.length
+        val lengthOfA = a.length
+        if (lengthOfA > lengthOfB) {
+            repeat(lengthOfA - lengthOfB) {
+                newB = "0$newB"
+            }
+        } else if (lengthOfB > lengthOfA) {
+            repeat(times = lengthOfB - lengthOfA) {
+                newA = "0$newA"
+            }
+        }
+        var result = ""
+        var carry = 0
+        for (i in newA.lastIndex downTo 0) {
+            var sum = carry
+            sum += newA[i].digitToInt() + newB[i].digitToInt()
+            result = "${sum % 2}" + result
+            carry = sum / 2
+        }
+        if (carry > 0)
+            result = carry.toString() + result
+        return result
+    }
+
 }
